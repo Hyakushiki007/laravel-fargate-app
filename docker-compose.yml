@@ -4,6 +4,7 @@ volumes:
   db-store:
 services:
   app:
+    container_name: app
     build:
       context: .
       dockerfile: ./infra/docker/php/Dockerfile
@@ -30,6 +31,7 @@ services:
       - REDIS_PORT=6379
 
   web:
+    container_name: web
     build:
       context: .
       dockerfile: ./infra/docker/nginx/Dockerfile
@@ -51,6 +53,7 @@ services:
       - VPC_CIDR=${VPC_CIDR:-172.31.0.0/16}
 
   db:
+    container_name: db
     build:
       context: .
       dockerfile: ./infra/docker/mysql/Dockerfile
@@ -72,6 +75,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
   cache:
+    container_name: cache
     image: redis:6.2.4-alpine
 
 networks:
